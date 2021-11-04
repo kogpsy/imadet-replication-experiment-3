@@ -1,12 +1,12 @@
-# jspsych_template
+# Gratings Replication Experiment 1
 
-This project was generated using `jspsych_template`. It leverages `jspsych-builder` (and therefore Babel, Webpack and SASS) to easy jsPsych development and automate the build process.
+This project aims to refactor the code used in the experiment (TODO: which experiment) in a clean and modular way. It leverages `jspsych-builder` (and therefore Babel, Webpack and SASS) to ease jsPsych development and automate the build process.
 
 ## Getting started
 
-The package manager used is Yarn ([for a quick introduction, see here][1]). Make sure you have it installed in order to use this template to develop jsPsych experiments.
+The package manager used is yarn ([for a quick introduction, see here][1]). Make sure you have it installed in order to use this template to develop jsPsych experiments.
 
-As with every modern Javascript project, after cloning the source code you need to install the project dependencies with `yarn install`. This step is only required at the beginning and when the dependencies change.
+As with every modern JavaScript project, after cloning the source code you need to install the project dependencies with `yarn install`. This step is only required at the beginning and when the dependencies change.
 
 ## Available commands
 

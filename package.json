@@ -1,9 +1,9 @@
 {
-  "name": "template_experiment",
+  "name": "gratings_replication_experiment_1",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Robin Bürkli <robuba.jr@gmx.ch>",
-  "description": "A template experiment to build upon.",
+  "description": "Clean and modular refactor of the code of an existing experiment.",
   "scripts": {
     "jspsych": "jspsych -e experiment",
     "dev": "jspsych run",

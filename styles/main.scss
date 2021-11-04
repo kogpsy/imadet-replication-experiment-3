@@ -1,5 +1,15 @@
 @import '~jspsych/css/jspsych.css';
 
+// Define a custom font-face to maximize standardization
+@font-face {
+  font-family: Lato;
+  src: url(../media/misc/Lato-Regular.ttf);
+}
+
 .jspsych-display-element {
   background-color: #ffffff;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
 }

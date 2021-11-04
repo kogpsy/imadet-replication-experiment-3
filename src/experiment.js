@@ -1,6 +1,6 @@
 /**
- * @title template_experiment
- * @description A template experiment to build upon.
+ * @title Gratings Replication Experiment 1
+ * @description In diesem Experiment geht es um ... (anpassen in experiment.js).
  * @version 0.1.0
  *
  * The following lines specify which media directories will be packaged and preloaded by jsPsych.
@@ -40,18 +40,23 @@ export async function run({ assetPaths, input = {}, environment }) {
     images: assetPaths.images,
     audio: assetPaths.audio,
     video: assetPaths.video,
+    misc: assetPaths.misc,
   });
 
   // Welcome screen
   timeline.push({
     type: HtmlKeyboardResponsePlugin,
-    stimulus: '<p>Welcome to template_experiment!<p/>',
+    stimulus:
+      '<p>Willkommen zum Experiment! Drücken Sie eine beliebige Taste, um zu starten.<p/>',
   });
 
   // Switch to fullscreen
   timeline.push({
     type: FullscreenPlugin,
     fullscreen_mode: true,
+    message:
+      '<p>Wir werden als erstes in den Vollbild-Modus wechseln. Drücken Sie auf OK, wenn Sie bereit sind.</p>',
+    button_label: 'OK',
   });
 
   await jsPsych.run(timeline);
