@@ -6,10 +6,17 @@
   src: url(../media/misc/Lato-Regular.ttf);
 }
 
+// Set global font to maximize standardization
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+// Set the experiment background color
 .jspsych-display-element {
   background-color: #ffffff;
 }
 
-p {
-  font-family: 'Lato', sans-serif;
+// Set the content width to 80% of the screen
+.jspsych-content {
+  width: 80%;
 }

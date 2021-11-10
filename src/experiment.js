@@ -17,6 +17,10 @@ import '../styles/main.scss';
 
 import { initJsPsych } from 'jspsych';
 
+// TODO: These are linked via yarn link, and hence not defined in package.json
+import { itemsGerman as vviqItemsGerman } from 'jspsych-vviq';
+import { itemsEnglish as lshsItemsEnglish } from 'jspsych-lshs';
+
 import FullscreenPlugin from '@jspsych/plugin-fullscreen';
 import HtmlKeyboardResponsePlugin from '@jspsych/plugin-html-keyboard-response';
 import PreloadPlugin from '@jspsych/plugin-preload';
@@ -58,6 +62,18 @@ export async function run({ assetPaths, input = {}, environment }) {
       '<p>Wir werden als erstes in den Vollbild-Modus wechseln. Drücken Sie auf OK, wenn Sie bereit sind.</p>',
     button_label: 'OK',
   });
+
+  // Test VVIQ package
+  // timeline.push(vviqItemsGerman.instruction);
+  // timeline.push(vviqItemsGerman.itemBlock1);
+  // timeline.push(vviqItemsGerman.itemBlock2);
+  // timeline.push(vviqItemsGerman.itemBlock3);
+  // timeline.push(vviqItemsGerman.itemBlock4);
+
+  // Test LSHS package
+  timeline.push(lshsItemsEnglish.instruction);
+  timeline.push(lshsItemsEnglish.itemBlock1);
+  timeline.push(lshsItemsEnglish.itemBlock2);
 
   await jsPsych.run(timeline);
 
