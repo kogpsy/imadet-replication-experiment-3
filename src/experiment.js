@@ -27,6 +27,10 @@ import { itemsGerman as lshsItemsGerman } from 'jspsych-lshs';
 // Import constants
 import { SHOW_QUESTIONNAIRES } from './constants';
 
+// Import tools to create image sequences
+import { ImageSequenceType } from './imageSequence';
+import { generateImageSequence } from './imageSequence';
+
 /**
  * This method will be executed by jsPsych Builder and is expected to run the jsPsych experiment
  *
@@ -69,6 +73,16 @@ export async function run({ assetPaths, input = {}, environment }) {
     timeline.push(lshsItemsGerman.itemBlock1);
     timeline.push(lshsItemsGerman.itemBlock2);
   }
+
+  // Test image sequence generation function
+  const s = generateImageSequence(
+    jsPsych,
+    1,
+    35,
+    20,
+    ImageSequenceType.LeftTiltedGrating
+  );
+  console.log(s);
 
   await jsPsych.run(timeline);
 
