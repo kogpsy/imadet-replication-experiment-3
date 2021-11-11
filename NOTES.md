@@ -12,13 +12,11 @@
 
 ## Tasks
 
-Remember: now working with code oss.
-
 - [x] VVIQ package
-- [ ] LSHS package
+- [x] LSHS package
   - [x] Basic structure
   - [x] English strings
-  - [ ] German strings
+  - [x] German strings
 - [ ] What is the best way to distribute the package (jspsych-contrib vs npm package). Wrote mail to dev, awaiting response.
 - [ ] Distribute
 - [ ] Adapt gratings experiment 3 to jsPsych 7 (with typescript)
