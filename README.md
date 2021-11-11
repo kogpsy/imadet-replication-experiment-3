@@ -1,6 +1,8 @@
-# Gratings Replication Experiment 1
+# imadet-replication-experiment-3
 
-This project aims to refactor the code used in the experiment (TODO: which experiment) in a clean and modular way. It leverages `jspsych-builder` (and therefore Babel, Webpack and SASS) to ease jsPsych development and automate the build process.
+This project aims to refactor the code used in experiment 3 of the IMADET study by [Dijkstra et al. (2021)][3] in a clean and modular way. It leverages `jspsych-builder` (and therefore Babel, Webpack and SASS) to ease jsPsych development, reach a high browser compatibility and automate the build process.
+
+The broader goal is to replicate the findings of the beforemetioned study, and on the way there generate useful software modules which can be used in other studies.
 
 ## Getting started
 
@@ -24,3 +26,4 @@ This will compile and package the source files into a `.jzip` file and save it i
 
 [1]: https://yarnpkg.com/getting-started
 [2]: https://github.com/bjoluc/jspsych-builder
+[3]: https://doi.org/10.1016/j.cognition.2021.104719
