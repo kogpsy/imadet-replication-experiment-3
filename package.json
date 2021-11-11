@@ -5,7 +5,6 @@
   "author": "Robin Bürkli <robuba.jr@gmx.ch>",
   "description": "Clean and modular refactor of the code of an existing experiment.",
   "scripts": {
-    "jspsych": "jspsych -e experiment",
     "dev": "jspsych run",
     "build": "jspsych build"
   },
