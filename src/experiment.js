@@ -17,13 +17,15 @@ import '../styles/main.scss';
 
 import { initJsPsych } from 'jspsych';
 
-// TODO: These are linked via yarn link, and hence not defined in package.json
-import { itemsGerman as vviqItemsGerman } from 'jspsych-vviq';
-import { itemsEnglish as lshsItemsEnglish } from 'jspsych-lshs';
-
-import FullscreenPlugin from '@jspsych/plugin-fullscreen';
 import HtmlKeyboardResponsePlugin from '@jspsych/plugin-html-keyboard-response';
 import PreloadPlugin from '@jspsych/plugin-preload';
+
+// TODO: These are linked via yarn link, and hence not defined in package.json
+import { itemsGerman as vviqItemsGerman } from 'jspsych-vviq';
+import { itemsGerman as lshsItemsGerman } from 'jspsych-lshs';
+
+// Import constants
+import { SHOW_QUESTIONNAIRES } from './constants';
 
 /**
  * This method will be executed by jsPsych Builder and is expected to run the jsPsych experiment
@@ -54,26 +56,19 @@ export async function run({ assetPaths, input = {}, environment }) {
       '<p>Willkommen zum Experiment! Drücken Sie eine beliebige Taste, um zu starten.<p/>',
   });
 
-  // Switch to fullscreen
-  timeline.push({
-    type: FullscreenPlugin,
-    fullscreen_mode: true,
-    message:
-      '<p>Wir werden als erstes in den Vollbild-Modus wechseln. Drücken Sie auf OK, wenn Sie bereit sind.</p>',
-    button_label: 'OK',
-  });
-
-  // Test VVIQ package
-  // timeline.push(vviqItemsGerman.instruction);
-  // timeline.push(vviqItemsGerman.itemBlock1);
-  // timeline.push(vviqItemsGerman.itemBlock2);
-  // timeline.push(vviqItemsGerman.itemBlock3);
-  // timeline.push(vviqItemsGerman.itemBlock4);
-
-  // Test LSHS package
-  timeline.push(lshsItemsEnglish.instruction);
-  timeline.push(lshsItemsEnglish.itemBlock1);
-  timeline.push(lshsItemsEnglish.itemBlock2);
+  // Add questionnaire items to timeline, if defined so in ./constants.js
+  if (SHOW_QUESTIONNAIRES) {
+    // VVIQ
+    timeline.push(vviqItemsGerman.instruction);
+    timeline.push(vviqItemsGerman.itemBlock1);
+    timeline.push(vviqItemsGerman.itemBlock2);
+    timeline.push(vviqItemsGerman.itemBlock3);
+    timeline.push(vviqItemsGerman.itemBlock4);
+    // LSHS
+    timeline.push(lshsItemsGerman.instruction);
+    timeline.push(lshsItemsGerman.itemBlock1);
+    timeline.push(lshsItemsGerman.itemBlock2);
+  }
 
   await jsPsych.run(timeline);
 
