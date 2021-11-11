@@ -6,9 +6,11 @@
 
 ## Status
 
-- Integrated Lato font for standardization. Not sure if the preloading is done correctly, though.
-- Next step: Then create VVIQ package.
+- Lato font is used everywhere
 - The `jspsych-vviq` package is included via `yarn link`. To undo this, run `yarn unlink jspsych-vviq` in this repo, and `yarn unlink` in the `jspsych-vviq` repo.
+- The `makeStimSequence()` function of the original experiment has been extracted and put into `src/imageSequence.js`.
+
+- Next step: Understand and port the rest of the experiment.
 
 ## Tasks
 
@@ -20,3 +22,4 @@
 - [ ] What is the best way to distribute the package (jspsych-contrib vs npm package). Wrote mail to dev, awaiting response.
 - [ ] Distribute
 - [ ] Adapt gratings experiment 3 to jsPsych 7 (with typescript)
+  - WIP

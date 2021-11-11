@@ -28,8 +28,7 @@ import { itemsGerman as lshsItemsGerman } from 'jspsych-lshs';
 import { SHOW_QUESTIONNAIRES } from './constants';
 
 // Import tools to create image sequences
-import { ImageSequenceType } from './imageSequence';
-import { generateImageSequence } from './imageSequence';
+import { ImageSequenceType, generateImageSequence } from './imageSequence';
 
 /**
  * This method will be executed by jsPsych Builder and is expected to run the jsPsych experiment
