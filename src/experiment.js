@@ -27,23 +27,39 @@ import { lshsGerman } from 'jspsych-lshs';
 // Import constants
 import { SHOW_QUESTIONNAIRES } from './constants';
 
-// Import tools to create image sequences
-import { ImageSequenceType, generateImageSequence } from './imageSequence';
+// Import utils
+import { getFixationCross, getRandomResponseMapping } from './utils';
+
+// Import trials
+import { getPraciceTimeline } from './practiceTrials';
 
 /**
- * This method will be executed by jsPsych Builder and is expected to run the jsPsych experiment
+ * This method will be executed by jsPsych Builder and is expected to run the
+ * jsPsych experiment
  *
  * @param {object} options Options provided by jsPsych Builder
- * @param {any} [options.input] A custom object that can be specified via the JATOS web interface ("JSON study input").
- * @param {"development"|"production"|"jatos"} options.environment The context in which the experiment is run: `development` for `jspsych run`, `production` for `jspsych build`, and "jatos" if served by JATOS
- * @param {{images: string[]; audio: string[]; video: string[];, misc: string[];}} options.assetPaths An object with lists of file paths for the respective `@...Dir` pragmas
+ * @param {any} [options.input] A custom object that can be specified via the
+ * JATOS web interface ("JSON study input").
+ * @param {"development"|"production"|"jatos"} options.environment The context
+ * in which the experiment is run: `development` for `yarn run dev`,
+ * `production` for `yarn run build`, and "jatos" if served by JATOS
+ * @param {{images: string[]; audio: string[]; video: string[];,
+ * misc: string[];}} options.assetPaths An object with lists of file paths for
+ * the respective `@...Dir` pragmas
  */
 export async function run({ assetPaths, input = {}, environment }) {
+  // Initialize jsPsych
   const jsPsych = initJsPsych();
 
+  // Generate a random response key mapping
+  const responseMapping = getRandomResponseMapping();
+  // Get the fixation cross trial
+  const fixationCross = getFixationCross(jsPsych);
+
+  // Create the timeline array
   const timeline = [];
 
-  // Preload assets
+  // When the experiment is run, first preload all assets
   timeline.push({
     type: PreloadPlugin,
     images: assetPaths.images,
@@ -52,20 +68,52 @@ export async function run({ assetPaths, input = {}, environment }) {
     misc: assetPaths.misc,
   });
 
-  // Welcome screen
+  // Push the welcome screen to the timeline
   timeline.push({
     type: HtmlKeyboardResponsePlugin,
-    stimulus:
-      '<p>Willkommen zum Experiment! Drücken Sie eine beliebige Taste, um zu starten.<p/>',
+    stimulus: `
+      <p>
+        Willkommen zum Experiment! Drücken Sie eine beliebige Taste, um zu
+        starten.
+      </p>
+    `,
   });
 
-  // Add questionnaire items to timeline, if defined so in ./constants.js
+  // Push questionnaires to timeline, if defined so in ./constants.js
   if (SHOW_QUESTIONNAIRES) {
     // VVIQ
     timeline.push(vviqGerman);
     // LSHS
     timeline.push(lshsGerman);
   }
+
+  // Push the main explanation of the experiment to the timeline
+  timeline.push({
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: `
+      <p>
+        Während diesem Experiment werden Sie nach <strong>verrauschten
+          Gittermustern</strong> suchen (siehe unten).
+      </p>
+      <p>
+        <strong>Gittermuster</strong> bestehen aus schwarz-weiss gestreiften
+        Linien (links).
+      </p>
+      <p>
+        Das <strong>Rauschen</strong> ist eine Sammlung von zufällig
+        angeordneten schwarzen und weissen Punkten (mitte).
+      </p>
+      <p>
+        Ihre Aufgabe besteht darin, bei jedem Durchgang anzugeben, ob Sie ein 
+        Gittermuster gesehen haben oder nicht (rechts).
+      </p>
+      <img src='../media/images/example_stim-01.png' width=600 ></img>
+      <p>Drücken Sie die [Leertaste], um fortzufahren.</p>
+    `,
+    choices: [' '],
+  });
+
+  timeline.push(getPraciceTimeline(jsPsych, responseMapping, fixationCross));
 
   await jsPsych.run(timeline);
 

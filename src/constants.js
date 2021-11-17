@@ -27,3 +27,8 @@ export const FIXATION_CROSS_DURATION = 200;
 // Define the start level of the visibility of the gratings (from 1 to 50)
 // Default: 46
 export const GRATING_VISIBILITY_LEVEL_INIT = 46;
+
+// Define how many times the practice trial procedure should be carried out. A
+// single procedure contains 3 grating animations.
+// Default: 2
+export const PRACTICE_REPETITIONS = 2;

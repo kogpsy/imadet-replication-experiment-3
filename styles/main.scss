@@ -1,14 +1,12 @@
 @import '~jspsych/css/jspsych.css';
 
-// Define a custom font-face to maximize standardization
-@font-face {
-  font-family: Lato;
-  src: url(../media/misc/Lato-Regular.ttf);
+// Make fixation cross big
+.fixation_cross {
+  font-size: 60px;
 }
 
-// Set global font to maximize standardization
-body {
-  font-family: 'Lato', sans-serif;
+.vertical_spacer {
+  height: 15px;
 }
 
 // Set the experiment background color
