@@ -21,8 +21,8 @@ import HtmlKeyboardResponsePlugin from '@jspsych/plugin-html-keyboard-response';
 import PreloadPlugin from '@jspsych/plugin-preload';
 
 // TODO: These are linked via yarn link, and hence not defined in package.json
-import { itemsGerman as vviqItemsGerman } from 'jspsych-vviq';
-import { itemsGerman as lshsItemsGerman } from 'jspsych-lshs';
+import { vviqGerman } from 'jspsych-vviq';
+import { lshsGerman } from 'jspsych-lshs';
 
 // Import constants
 import { SHOW_QUESTIONNAIRES } from './constants';
@@ -62,26 +62,10 @@ export async function run({ assetPaths, input = {}, environment }) {
   // Add questionnaire items to timeline, if defined so in ./constants.js
   if (SHOW_QUESTIONNAIRES) {
     // VVIQ
-    timeline.push(vviqItemsGerman.instruction);
-    timeline.push(vviqItemsGerman.itemBlock1);
-    timeline.push(vviqItemsGerman.itemBlock2);
-    timeline.push(vviqItemsGerman.itemBlock3);
-    timeline.push(vviqItemsGerman.itemBlock4);
+    timeline.push(vviqGerman);
     // LSHS
-    timeline.push(lshsItemsGerman.instruction);
-    timeline.push(lshsItemsGerman.itemBlock1);
-    timeline.push(lshsItemsGerman.itemBlock2);
+    timeline.push(lshsGerman);
   }
-
-  // Test image sequence generation function
-  const s = generateImageSequence(
-    jsPsych,
-    1,
-    35,
-    20,
-    ImageSequenceType.LeftTiltedGrating
-  );
-  console.log(s);
 
   await jsPsych.run(timeline);
 

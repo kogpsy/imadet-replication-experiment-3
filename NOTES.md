@@ -19,7 +19,7 @@
   - [x] Basic structure
   - [x] English strings
   - [x] German strings
-- [ ] What is the best way to distribute the package (jspsych-contrib vs npm package). Wrote mail to dev, awaiting response.
+- [ ] What is the best way to distribute the package (jspsych-contrib vs npm package). Wrote mail to dev, response: Not formalized yet. Made suggestion and awaiting reply.
 - [ ] Distribute
 - [ ] Adapt gratings experiment 3 to jsPsych 7 (with typescript)
   - WIP
