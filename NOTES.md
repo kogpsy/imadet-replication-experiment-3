@@ -6,11 +6,13 @@
 
 ## Status
 
-- Lato font is used everywhere
 - The `jspsych-vviq` package is included via `yarn link`. To undo this, run `yarn unlink jspsych-vviq` in this repo, and `yarn unlink` in the `jspsych-vviq` repo.
-- The `makeStimSequence()` function of the original experiment has been extracted and put into `src/imageSequence.js`.
+- The detection practice timeline was extracted and ported successfully.
+- The staircase detection timeline was extracted and ported successfully.
 
-- Next step: Understand and port the rest of the experiment.
+- NOTE/TODO: the gratingVisibility level at the end of each block must be saved in some way, to be accessible later on!!!
+- Next step: Figure out what data is used further down the timeline, and how to save that data in an appropriate way.
+- Then: Start with the main experiment portation
 
 ## Tasks
 

@@ -31,7 +31,8 @@ import { SHOW_QUESTIONNAIRES } from './constants';
 import { getFixationCross, getRandomResponseMapping } from './utils';
 
 // Import trials
-import { getPraciceTimeline } from './practiceTrials';
+import { getPraciceDetectionTimeline } from './practiceDetectionTimeline';
+import { getStaircaseDetectionTimeline } from './staircaseDetectionTimeline';
 
 /**
  * This method will be executed by jsPsych Builder and is expected to run the
@@ -107,13 +108,24 @@ export async function run({ assetPaths, input = {}, environment }) {
         Ihre Aufgabe besteht darin, bei jedem Durchgang anzugeben, ob Sie ein 
         Gittermuster gesehen haben oder nicht (rechts).
       </p>
+      <div class="vertical_spacer"></div>
+      <div class="vertical_spacer"></div>
       <img src='../media/images/example_stim-01.png' width=600 ></img>
+      <div class="vertical_spacer"></div>
       <p>Drücken Sie die [Leertaste], um fortzufahren.</p>
     `,
     choices: [' '],
   });
 
-  timeline.push(getPraciceTimeline(jsPsych, responseMapping, fixationCross));
+  // Add the practice timeline
+  // timeline.push(
+  //   getPraciceDetectionTimeline(jsPsych, responseMapping, fixationCross)
+  // );
+
+  // Add the staircase timeline
+  timeline.push(
+    getStaircaseDetectionTimeline(jsPsych, responseMapping, fixationCross)
+  );
 
   await jsPsych.run(timeline);
 

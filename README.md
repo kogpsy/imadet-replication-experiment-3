@@ -4,6 +4,12 @@ This project aims to refactor the code used in experiment 3 of the IMADET study 
 
 The broader goal is to replicate the findings of the beforemetioned study, and on the way there generate useful software modules which can be used in other studies.
 
+## About the experiment
+
+- practice detecting gratings
+- estimate accuracy with the staircase method
+-
+
 ## Getting started
 
 The package manager used is yarn ([for a quick introduction, see here][1]). Make sure you have it installed in order to use this template to develop jsPsych experiments.

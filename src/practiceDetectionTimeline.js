@@ -4,7 +4,7 @@
  * Author: Robin Bürkli <robuba.jr@gmx.ch>
  * License: MIT
  *
- * This file contains the practice trials of the experiment.
+ * This file contains the detection practice trials of the experiment.
  */
 
 import HtmlKeyboardResponsePlugin from '@jspsych/plugin-html-keyboard-response';
@@ -20,7 +20,17 @@ import { generateImageSequence, ImageSequenceType } from './imageSequence';
 
 import { calculatePracticeStats } from './utils';
 
-export const getPraciceTimeline = (
+/**
+ * Builds the timeline for the detection practice part of the experiment.
+ *
+ * @param {Object} jsPsychInstance The jsPsych instance to be used
+ * @param {Object} responseMapping An object containing the response mapping for
+ * the current experimental session
+ * @param {Object} fixationCross A jsPsych trial which briefly shows a fixation
+ * cross
+ * @returns {Object} A jsPsych nested timeline
+ */
+export const getPraciceDetectionTimeline = (
   jsPsychInstance,
   responseMapping,
   fixationCross
