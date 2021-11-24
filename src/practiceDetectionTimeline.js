@@ -14,7 +14,7 @@ import {
   ANIMATION_DURATION,
   ANIMATION_FRAMES,
   GRATING_VISIBILITY_LEVEL_INIT,
-  PRACTICE_REPETITIONS,
+  PRACTICE_DETECTION_REPETITIONS,
 } from './constants';
 import { generateImageSequence, ImageSequenceType } from './imageSequence';
 
@@ -140,7 +140,7 @@ export const getPraciceDetectionTimeline = (
     // Repeat the practice procedure according to the ./constants.js file
     sample: {
       type: 'fixed-repetitions',
-      size: PRACTICE_REPETITIONS,
+      size: PRACTICE_DETECTION_REPETITIONS,
     },
   };
 
@@ -152,7 +152,7 @@ export const getPraciceDetectionTimeline = (
       // Calcualte accuracy
       const stats = calculatePracticeStats(
         jsPsychInstance,
-        PRACTICE_REPETITIONS
+        PRACTICE_DETECTION_REPETITIONS
       );
       // And give feedback accordingly
       if (stats.accuracy > 74) {
@@ -184,7 +184,7 @@ export const getPraciceDetectionTimeline = (
       // Calculate accuracy
       const stats = calculatePracticeStats(
         jsPsychInstance,
-        PRACTICE_REPETITIONS
+        PRACTICE_DETECTION_REPETITIONS
       );
       // Stop the loop if a high enough accuracy is reached.
       if (stats.accuracy > 74) {

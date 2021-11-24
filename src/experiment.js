@@ -33,6 +33,7 @@ import { getFixationCross, getRandomResponseMapping } from './utils';
 // Import trials
 import { getPraciceDetectionTimeline } from './practiceDetectionTimeline';
 import { getStaircaseDetectionTimeline } from './staircaseDetectionTimeline';
+import { getPracticeImaginationTimeline } from './practiceImaginationTimeline';
 
 /**
  * This method will be executed by jsPsych Builder and is expected to run the
@@ -126,6 +127,9 @@ export async function run({ assetPaths, input = {}, environment }) {
   // timeline.push(
   //   getStaircaseDetectionTimeline(jsPsych, responseMapping, fixationCross)
   // );
+
+  // Add the imagiantion practice timeline
+  timeline.push(getPracticeImaginationTimeline(jsPsych, fixationCross));
 
   await jsPsych.run(timeline);
 

@@ -36,18 +36,18 @@ export const GRATING_VISIBILITY_LEVEL_INIT = 46;
 
 /**
  *
- * Settings regarding the detection practice
+ * Settings regarding the detection practice task
  *
  */
 
 // Define how many times the practice trial procedure should be carried out. A
 // single procedure contains 3 grating animations.
 // Default: 2
-export const PRACTICE_REPETITIONS = 2;
+export const PRACTICE_DETECTION_REPETITIONS = 2;
 
 /**
  *
- * Settings regarding the staircase detection
+ * Settings regarding the staircase detection calibration task
  *
  */
 
@@ -75,3 +75,13 @@ export const STAIRCASE_TRIALS_PER_CYCLE = 10;
 // Controls how many accuracy estimation cycles are carried out.
 // Default: 12
 export const STAIRCASE_CYCLES = 12;
+
+/**
+ *
+ * Settings regarding the imagination practice task
+ *
+ */
+
+// Controls how many noise animations are shown per grating tilt.
+// Default: 10
+export const PRACTICE_IMAGINATION_TRIALS_PER_TILT = 10;
