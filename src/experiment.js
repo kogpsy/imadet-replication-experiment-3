@@ -117,15 +117,15 @@ export async function run({ assetPaths, input = {}, environment }) {
     choices: [' '],
   });
 
-  // Add the practice timeline
+  // Add the detection practice timeline
   // timeline.push(
   //   getPraciceDetectionTimeline(jsPsych, responseMapping, fixationCross)
   // );
 
-  // Add the staircase timeline
-  timeline.push(
-    getStaircaseDetectionTimeline(jsPsych, responseMapping, fixationCross)
-  );
+  // Add the detection staircase timeline
+  // timeline.push(
+  //   getStaircaseDetectionTimeline(jsPsych, responseMapping, fixationCross)
+  // );
 
   await jsPsych.run(timeline);
 

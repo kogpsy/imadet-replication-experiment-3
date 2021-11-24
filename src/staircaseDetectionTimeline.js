@@ -17,8 +17,10 @@
  * difficulty is increased (i.e. the visibility of the gratings gets decreased).
  */
 
+// Import plugins
 import AnimationPlugin from '@jspsych/plugin-animation';
 import HtmlKeyboardResponsePlugin from '@jspsych/plugin-html-keyboard-response';
+// Import constants
 import {
   ANIMATION_DURATION,
   ANIMATION_FRAMES,
@@ -29,8 +31,19 @@ import {
   STAIRCASE_CYCLES,
   STAIRCASE_TRIALS_PER_CYCLE,
 } from './constants';
+// Import image sequence utils
 import { generateImageSequence, ImageSequenceType } from './imageSequence';
 
+/**
+ * Builds the timeline for the detection staircase part of the experiment.
+ *
+ * @param {Object} jsPsychInstance The jsPsych instance to be used
+ * @param {Object} responseMapping An object containing the response mapping for
+ * the current experimental session
+ * @param {Object} fixationCross A jsPsych trial which briefly shows a fixation
+ * cross
+ * @returns {Object} A jsPsych nested timeline
+ */
 export const getStaircaseDetectionTimeline = (
   jsPsychInstance,
   responseMapping,
@@ -177,10 +190,22 @@ export const getStaircaseDetectionTimeline = (
       cyclesCarriedOut++;
       // Check if another cycle should be carried out
       if (cyclesCarriedOut >= STAIRCASE_CYCLES) {
-        //
-        // TODO: STORE GRATINGVISIBILITY
-        //
-
+        // If the finished cycle presented left tilted gratings
+        if (
+          jsPsychInstance.timelineVariable('imageSequenceType') ===
+          ImageSequenceType.LeftTiltedGrating
+        ) {
+          // Store the according visibility level in a data property
+          jsPsychInstance.data.addProperties({
+            participantGratingVisibilityLevelLeft: gratingVisibility,
+          });
+        } else {
+          // If, however, right tilted gratings were presented, also store, but
+          // in different property, of course.
+          jsPsychInstance.data.addProperties({
+            participantGratingVisibilityLevelRight: gratingVisibility,
+          });
+        }
         // Reset gratingVisibility and the cycles count and stop this block
         cyclesCarriedOut = 0;
         gratingVisibility = GRATING_VISIBILITY_LEVEL_INIT;
@@ -191,8 +216,7 @@ export const getStaircaseDetectionTimeline = (
       let previousGratingVisibility = gratingVisibility;
 
       // Get all trials of the previous cycle which contain relevant data
-      const relevantTrials = jsPsychInstance.data
-        .get()
+      const relevantTrials = data
         // Multiplied by 3 since for each response trial, there is also an
         // animation and a fixation cross trial
         .last(STAIRCASE_TRIALS_PER_CYCLE * 3)

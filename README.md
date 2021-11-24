@@ -6,9 +6,12 @@ The broader goal is to replicate the findings of the beforemetioned study, and o
 
 ## About the experiment
 
-- practice detecting gratings
-- estimate accuracy with the staircase method
--
+four main parts
+
+- detection practice
+- detection staircase calibration
+- imagination practice
+- main experiment
 
 ## Getting started
 
