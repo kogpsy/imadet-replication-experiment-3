@@ -80,7 +80,7 @@ export const calculatePracticeStats = (
   const trials = jsPsychInstance.data
     .get()
     .last(practiceRepetitions * 3 * 3)
-    .filter({ test_part: 'practice' });
+    .filter({ test_part: 'practice_detection' });
   const correctResponses = trials.filter({ correct: true }).count();
   const accuracy = Math.round((correctResponses / trials.count()) * 100);
 

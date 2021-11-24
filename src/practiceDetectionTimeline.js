@@ -106,7 +106,7 @@ export const getPraciceDetectionTimeline = (
           ImageSequenceType.LeftTiltedGrating
         ),
         data: {
-          test_part: 'practice',
+          test_part: 'practice_detection',
           correct_response: responseMapping.responses[0],
         },
       },
@@ -119,7 +119,7 @@ export const getPraciceDetectionTimeline = (
           ImageSequenceType.RightTiltedGrating
         ),
         data: {
-          test_part: 'practice',
+          test_part: 'practice_detection',
           correct_response: responseMapping.responses[0],
         },
       },
@@ -132,7 +132,7 @@ export const getPraciceDetectionTimeline = (
           ImageSequenceType.Noise
         ),
         data: {
-          test_part: 'practice',
+          test_part: 'practice_detection',
           correct_response: responseMapping.responses[1],
         },
       },
