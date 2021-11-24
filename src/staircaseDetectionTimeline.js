@@ -42,12 +42,16 @@ import { generateImageSequence, ImageSequenceType } from './imageSequence';
  * the current experimental session
  * @param {Object} fixationCross A jsPsych trial which briefly shows a fixation
  * cross
+ * @param {Object} participantGratingVisibility A "shared" object which holds
+ * the grating visibility levels of the current participant. Contains a setter
+ * which is used here.
  * @returns {Object} A jsPsych nested timeline
  */
 export const getStaircaseDetectionTimeline = (
   jsPsychInstance,
   responseMapping,
-  fixationCross
+  fixationCross,
+  participantGratingVisibility
 ) => {
   // Declare and initiate a timeline array
   let timeline = [];
@@ -199,12 +203,16 @@ export const getStaircaseDetectionTimeline = (
           jsPsychInstance.data.addProperties({
             participantGratingVisibilityLevelLeft: gratingVisibility,
           });
+          // Also store it in the participantGratingVisibility object
+          participantGratingVisibility.setLeft(gratingVisibility);
         } else {
           // If, however, right tilted gratings were presented, also store, but
           // in different property, of course.
           jsPsychInstance.data.addProperties({
             participantGratingVisibilityLevelRight: gratingVisibility,
           });
+          // Also store it in the participantGratingVisibility object
+          participantGratingVisibility.setRight(gratingVisibility);
         }
         // Reset gratingVisibility and the cycles count and stop this block
         cyclesCarriedOut = 0;

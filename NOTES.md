@@ -9,10 +9,16 @@
 - The `jspsych-vviq` package is included via `yarn link`. To undo this, run `yarn unlink jspsych-vviq` in this repo, and `yarn unlink` in the `jspsych-vviq` repo.
 - The detection practice timeline was extracted and ported successfully.
 - The staircase detection timeline was extracted and ported successfully.
+- The imagination practice timeline was extracted and ported successfully.
 
-- NOTE/TODO: the gratingVisibility level at the end of each block must be saved in some way, to be accessible later on!!!
-- Next step: Figure out what data is used further down the timeline, and how to save that data in an appropriate way.
-- Then: Start with the main experiment portation
+- Port the main experiment
+
+## Notes on main
+
+- ima left vs ima right vs no image x displayed left vs displayed right = 6 conditions
+- each condition is carried out twice, one run is called a block
+- after each block: rate own imagination (did I?)
+- per block 24 animations to rate, 50% grating 50% noise
 
 ## Tasks
 

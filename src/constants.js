@@ -85,3 +85,23 @@ export const STAIRCASE_CYCLES = 12;
 // Controls how many noise animations are shown per grating tilt.
 // Default: 10
 export const PRACTICE_IMAGINATION_TRIALS_PER_TILT = 10;
+
+/**
+ *
+ * Settings regarding the main part of the experiment
+ *
+ */
+
+// Controls how many times all the conditions are repeated. There are six
+// conditions (left tilted gratings without imagination, left tilted gratings
+// with imagination of left tilted gratings, left tilted gratings with
+// imagination of right tilted gratings, and the same for right tilted
+// gratings).
+// Default: 2
+export const MAIN_EXPERIMENT_CONDITION_REPETITIONS = 2;
+
+// Controls how many animations are shown in each of the above mentioned
+// conditions. This must be an even number, so that in exactly 50% of the trials
+// a grating vs. a noise animation can be shown.
+// Default: 24
+export const MAIN_EXPERIMENT_TRIALS_PER_CONDITION = 24;

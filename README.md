@@ -19,6 +19,8 @@ The package manager used is yarn ([for a quick introduction, see here][1]). Make
 
 As with every modern JavaScript project, after cloning the source code you need to install the project dependencies with `yarn install`. This step is only required at the beginning and when the dependencies change.
 
+**Pro tipp**: To edit the experimental instructions, the VS Code Extension _Template Literal Editor_ comes in quite handy.
+
 ## Available commands
 
 ### `yarn run dev`

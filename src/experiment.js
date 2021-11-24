@@ -25,7 +25,10 @@ import { vviqGerman } from 'jspsych-vviq';
 import { lshsGerman } from 'jspsych-lshs';
 
 // Import constants
-import { SHOW_QUESTIONNAIRES } from './constants';
+import {
+  GRATING_VISIBILITY_LEVEL_INIT,
+  SHOW_QUESTIONNAIRES,
+} from './constants';
 
 // Import utils
 import { getFixationCross, getRandomResponseMapping } from './utils';
@@ -34,6 +37,7 @@ import { getFixationCross, getRandomResponseMapping } from './utils';
 import { getPraciceDetectionTimeline } from './practiceDetectionTimeline';
 import { getStaircaseDetectionTimeline } from './staircaseDetectionTimeline';
 import { getPracticeImaginationTimeline } from './practiceImaginationTimeline';
+import { getMainExperimentTimeline } from './mainExperimentTimeline';
 
 /**
  * This method will be executed by jsPsych Builder and is expected to run the
@@ -60,6 +64,28 @@ export async function run({ assetPaths, input = {}, environment }) {
 
   // Create the timeline array
   const timeline = [];
+
+  // Declare variables which will hold the grating visibility levels estimated
+  // during the staircase calibration part of the experiment.
+  const participantGratingVisibility = {
+    // Default values, in case the main experiment is run without the
+    // running the staircase calibration first.
+    left: GRATING_VISIBILITY_LEVEL_INIT,
+    right: GRATING_VISIBILITY_LEVEL_INIT,
+    // Setters and getters
+    setLeft: function (level) {
+      this.left = level;
+    },
+    setRight: function (level) {
+      this.right = level;
+    },
+    getLeft: function () {
+      return this.left;
+    },
+    getRight: function () {
+      return this.right;
+    },
+  };
 
   // When the experiment is run, first preload all assets
   timeline.push({
@@ -119,17 +145,32 @@ export async function run({ assetPaths, input = {}, environment }) {
   });
 
   // Add the detection practice timeline
-  // timeline.push(
-  //   getPraciceDetectionTimeline(jsPsych, responseMapping, fixationCross)
-  // );
+  timeline.push(
+    getPraciceDetectionTimeline(jsPsych, responseMapping, fixationCross)
+  );
 
   // Add the detection staircase timeline
-  // timeline.push(
-  //   getStaircaseDetectionTimeline(jsPsych, responseMapping, fixationCross)
-  // );
+  timeline.push(
+    getStaircaseDetectionTimeline(
+      jsPsych,
+      responseMapping,
+      fixationCross,
+      participantGratingVisibility
+    )
+  );
 
   // Add the imagiantion practice timeline
   timeline.push(getPracticeImaginationTimeline(jsPsych, fixationCross));
+
+  // Add the main experiment timeline
+  timeline.push(
+    getMainExperimentTimeline(
+      jsPsych,
+      responseMapping,
+      fixationCross,
+      participantGratingVisibility
+    )
+  );
 
   await jsPsych.run(timeline);
 

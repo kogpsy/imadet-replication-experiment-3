@@ -892,6 +892,11 @@
   resolved "https://registry.yarnpkg.com/@jspsych/plugin-animation/-/plugin-animation-1.0.0.tgz#56351db5bffdf58a61adeafdff4c8acecfadb239"
   integrity sha512-Vd/gkHqevJx6Er9CT+gQs8dYUUZ6n7Ry6sIjSFtmZJe2AsVbw0ZXDiXkGIK84tuAXD/zllW59AFTPl4nbGkjkg==
 
+"@jspsych/plugin-call-function@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@jspsych/plugin-call-function/-/plugin-call-function-1.0.0.tgz#7cf77b90afdabea289ed2576e25c6943a650306e"
+  integrity sha512-QLz7Nv0Qwzeg6Pk0uaLelcCVcpDQRh3EVF0M6Y/ZAV/zioRu60VV5zTvN4RzYYu+aJmdIiLxSo4/deL9bVN2Tw==
+
 "@jspsych/plugin-fullscreen@^1.0.0":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@jspsych/plugin-fullscreen/-/plugin-fullscreen-1.0.1.tgz"
