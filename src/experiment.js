@@ -49,15 +49,8 @@ import { initJsPsych } from 'jspsych';
 import HtmlKeyboardResponsePlugin from '@jspsych/plugin-html-keyboard-response';
 import PreloadPlugin from '@jspsych/plugin-preload';
 
-// TODO: These are linked via yarn link, and hence not defined in package.json
-import { vviqGerman } from 'jspsych-vviq';
-import { lshsGerman } from 'jspsych-lshs';
-
 // Import constants
-import {
-  GRATING_VISIBILITY_LEVEL_INIT,
-  SHOW_QUESTIONNAIRES,
-} from './constants';
+import { GRATING_VISIBILITY_LEVEL_INIT } from './constants';
 
 // Import utils
 import { getFixationCross, getRandomResponseMapping } from './utils';
@@ -133,14 +126,6 @@ export async function run({ assetPaths, input = {}, environment }) {
       </p>
     `,
   });
-
-  // Push questionnaires to timeline, if defined so in ./constants.js
-  if (SHOW_QUESTIONNAIRES) {
-    // VVIQ
-    timeline.push(vviqGerman);
-    // LSHS
-    timeline.push(lshsGerman);
-  }
 
   // Push the main explanation of the experiment to the timeline
   timeline.push({

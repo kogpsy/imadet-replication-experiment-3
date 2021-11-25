@@ -14,10 +14,6 @@
  *
  */
 
-// Define whether the VVIQ and LSHS questionnaires are shown to paticipants
-// Default: false
-export const SHOW_QUESTIONNAIRES = false;
-
 // Define how many frames the animations should have
 // Default: 20
 export const ANIMATION_FRAMES = 20;
