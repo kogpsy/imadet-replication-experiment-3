@@ -35,6 +35,7 @@ import { getPraciceDetectionTimeline } from './practiceDetectionTimeline';
 import { getStaircaseDetectionTimeline } from './staircaseDetectionTimeline';
 import { getPracticeImaginationTimeline } from './practiceImaginationTimeline';
 import { getMainExperimentTimeline } from './mainExperimentTimeline';
+import SurveyTextPlugin from '@jspsych/plugin-survey-text';
 
 /**
  * This method will be executed by jsPsych Builder and is expected to run the
@@ -126,7 +127,7 @@ export async function run({ assetPaths, input = {}, environment }) {
         angeordneten schwarzen und weissen Punkten (mitte).
       </p>
       <p>
-        Ihre Aufgabe besteht darin, bei jedem Durchgang anzugeben, ob Sie ein 
+        Ihre Aufgabe besteht darin, bei jedem Durchgang anzugeben, ob Sie ein
         Gittermuster gesehen haben oder nicht (rechts).
       </p>
       <div class="vertical_spacer"></div>
@@ -165,6 +166,46 @@ export async function run({ assetPaths, input = {}, environment }) {
       participantGratingVisibility
     )
   );
+
+  // Add some debrief questions to the timeline
+  timeline.push({
+    type: SurveyTextPlugin,
+    questions: [
+      { prompt: 'Was ist Ihr Geschlecht?', rows: 2, columns: 40 },
+      { prompt: 'Wie alt sind Sie?', rows: 2, columns: 40 },
+      { prompt: 'In welchem Land leben Sie?', rows: 2, columns: 40 },
+      {
+        prompt: `
+          Haben Sie sich die Gittermuster in den Blöcken wirklich vorgestellt,
+          als wir Sie darum baten? (Die Antwort auf diese Frage wird Ihre
+          Belonung nicht beeinflussen.)
+        `,
+        rows: 2,
+        columns: 40,
+      },
+      {
+        prompt: `
+          Haben Sie das Gefühl, dass sich das Vorstellen der Gittermuster auf
+          Ihre Antworten bei der Aufgabe ausgewirkt hat?
+        `,
+        rows: 2,
+        columns: 40,
+      },
+      { prompt: 'Haben Sie weitere Anmerkungen?', rows: 2, columns: 40 },
+    ],
+    button_label: 'Weiter',
+  });
+
+  // Add the "experiment finished" message to the timeline.
+  timeline.push({
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: `
+      <p>
+        Drücken Sie eine beliebige Taste, um das Experiment zu beenden. Vielen
+        Dank für Ihre Teilnahme!
+      </p> 
+    `,
+  });
 
   await jsPsych.run(timeline);
 

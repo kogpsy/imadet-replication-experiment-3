@@ -917,6 +917,11 @@
   resolved "https://registry.yarnpkg.com/@jspsych/plugin-survey-likert/-/plugin-survey-likert-1.0.0.tgz#08e96b0fb10308c658b41837f320621347c41815"
   integrity sha512-SYLXPyLTsY1xmNR2qtjQryZIx6WOOO7TuVi9PF4qeHjm11tdlqd7F9AEeEXMqDV+lZIyVVWDoh3vQxswoqsvGg==
 
+"@jspsych/plugin-survey-text@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@jspsych/plugin-survey-text/-/plugin-survey-text-1.0.0.tgz#01c62d4d105d01a8f8ce1cf81b16dd2f808ad971"
+  integrity sha512-y2pk8JWFJ7+WDAFun+D6O1pzQsetni/4eP6qyYZaAfdK+3z5pAMuoijVVS1bNjcCrD1cGtV4RhqgXXV1+6wXDA==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
