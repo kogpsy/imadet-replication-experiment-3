@@ -98,6 +98,17 @@ export const calculatePracticeStats = (
   };
 };
 
+/**
+ * Calculates participand response accuracy of the previous staircase cycle and
+ * suggests a new grating visibility level.
+ *
+ * @param {Object} data The data object containing the relevant trials to
+ * calculate the stats.
+ * @param {number} previousGratingVisibility An integer variable containing the
+ * previous gratingVisibility.
+ * @returns {Object} An object containing the accuracy and the suggested new
+ * grating visibility level.
+ */
 export const calculateStaircaseStats = (data, previousGratingVisibility) => {
   // Declare a variable for the newly calculated gratingVisibility
   let newGratingVisibility = previousGratingVisibility;
