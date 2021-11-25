@@ -2,27 +2,20 @@
 
 ## Issues
 
-- The bundle contains a Microsoft Corporation copyright & MIT license notice. It would be better if the notice contained the author's name. Probably solvable through a bash-script which runs post-build but ugly af.
+- The bundle contains a Microsoft Corporation copyright & MIT license notice. It
+  would be better if the notice contained the author's name. Probably solvable
+  through a bash-script which runs post-build but ugly af.
 
 ## Status
 
-- The `jspsych-vviq` package is included via `yarn link`. To undo this, run `yarn unlink jspsych-vviq` in this repo, and `yarn unlink` in the `jspsych-vviq` repo.
-- The detection practice timeline was extracted and ported successfully.
-- The staircase detection timeline was extracted and ported successfully.
-- The imagination practice timeline was extracted and ported successfully.
-- The main experiment timeline was extracted and ported successfully.
+The experiment is fully ported to jsPsych 7. What's left to do:
 
-- Next step: check if data of staircase should be saved on each cycle or so
-  - Catch all TODOs
+- Run the full study to check if there are any bugs left, and investigate the
+  final data
 
-## Tasks
+- Distribute `jspsych-vviq` and `jspsych-lshs` properly, and include them
+  in this project via `packages.json` insted of yarn links. To unlink:
 
-- [x] VVIQ package
-- [x] LSHS package
-  - [x] Basic structure
-  - [x] English strings
-  - [x] German strings
-- [ ] What is the best way to distribute the package (jspsych-contrib vs npm package). Wrote mail to dev, response: Not formalized yet. Made suggestion and awaiting reply.
-- [ ] Distribute
-- [ ] Adapt gratings experiment 3 to jsPsych 7 (with typescript)
-  - WIP
+  - In this repo: `yarn unlink jspsych-vviq && yarn unlink jspsych-lshs`
+
+  - In both questionnaire repos: `yarn unlink`
