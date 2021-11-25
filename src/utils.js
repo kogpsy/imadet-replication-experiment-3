@@ -11,7 +11,13 @@
 import HtmlKeyboardResponsePlugin from '@jspsych/plugin-html-keyboard-response';
 
 // Import constants
-import { FIXATION_CROSS_DURATION } from './constants';
+import {
+  FIXATION_CROSS_DURATION,
+  STAIRCASE_ACCURACY_LOWER_BOUND,
+  STAIRCASE_ACCURACY_TARGET,
+  STAIRCASE_ACCURACY_UPPER_BOUND,
+  STAIRCASE_TRIALS_PER_CYCLE,
+} from './constants';
 
 /**
  * Generates a random response mapping.
@@ -89,5 +95,46 @@ export const calculatePracticeStats = (
     correctResponses,
     accuracy,
     trialCount: trials.count(),
+  };
+};
+
+export const calculateStaircaseStats = (data, previousGratingVisibility) => {
+  // Declare a variable for the newly calculated gratingVisibility
+  let newGratingVisibility = previousGratingVisibility;
+
+  // Get all trials of the previous cycle which contain relevant data
+  const relevantTrials = data
+    // Multiplied by 3 since for each response trial, there is also an
+    // animation and a fixation cross trial
+    .last(STAIRCASE_TRIALS_PER_CYCLE * 3)
+    .filter({ test_part: 'staircase_test' });
+  // Based on that data, calcualte the number of correct responses and the
+  // accuracy.
+  const correctResponses = relevantTrials.filter({ correct: true }).count();
+  const accuracy = Math.round(
+    (correctResponses / relevantTrials.count()) * 100
+  );
+
+  // If the measured accuracy differs to strongly from the target accuracy,
+  // adjust the difficulty.
+  if (accuracy > STAIRCASE_ACCURACY_UPPER_BOUND) {
+    // Make it harder (less visible)
+    newGratingVisibility =
+      previousGratingVisibility -
+      Math.round((accuracy - STAIRCASE_ACCURACY_TARGET) / 10);
+  } else if (accuracy < STAIRCASE_ACCURACY_LOWER_BOUND) {
+    // Make it easier (more visible)
+    newGratingVisibility =
+      previousGratingVisibility +
+      Math.round((STAIRCASE_ACCURACY_TARGET - accuracy) / 10);
+  }
+  // Make sure we are not getting out of bounds
+  if (newGratingVisibility > 50) {
+    newGratingVisibility = 50;
+  }
+
+  return {
+    newGratingVisibility,
+    accuracy,
   };
 };
