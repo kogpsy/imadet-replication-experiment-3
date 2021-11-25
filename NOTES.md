@@ -10,15 +10,10 @@
 - The detection practice timeline was extracted and ported successfully.
 - The staircase detection timeline was extracted and ported successfully.
 - The imagination practice timeline was extracted and ported successfully.
+- The main experiment timeline was extracted and ported successfully.
 
-- Port the main experiment
-
-## Notes on main
-
-- ima left vs ima right vs no image x displayed left vs displayed right = 6 conditions
-- each condition is carried out twice, one run is called a block
-- after each block: rate own imagination (did I?)
-- per block 24 animations to rate, 50% grating 50% noise
+- Next step: check if data of staircase should be saved on each cycle or so
+  - Catch all TODOs
 
 ## Tasks
 

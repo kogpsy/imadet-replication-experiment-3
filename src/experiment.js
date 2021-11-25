@@ -7,9 +7,6 @@
  * Modify them to arbitrary paths (or comma-separated lists of paths) within the `media` directory,
  * or just delete them.
  * @imageDir images
- * @audioDir audio
- * @videoDir video
- * @miscDir misc
  */
 
 // You can import stylesheets (.scss or .css).
@@ -91,9 +88,6 @@ export async function run({ assetPaths, input = {}, environment }) {
   timeline.push({
     type: PreloadPlugin,
     images: assetPaths.images,
-    audio: assetPaths.audio,
-    video: assetPaths.video,
-    misc: assetPaths.misc,
   });
 
   // Push the welcome screen to the timeline

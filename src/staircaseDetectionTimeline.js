@@ -19,6 +19,7 @@
 
 // Import plugins
 import AnimationPlugin from '@jspsych/plugin-animation';
+import CallFunctionPlugin from '@jspsych/plugin-call-function';
 import HtmlKeyboardResponsePlugin from '@jspsych/plugin-html-keyboard-response';
 // Import constants
 import {
@@ -33,6 +34,7 @@ import {
 } from './constants';
 // Import image sequence utils
 import { generateImageSequence, ImageSequenceType } from './imageSequence';
+import { calculateStaircaseStats } from './utils';
 
 /**
  * Builds the timeline for the detection staircase part of the experiment.
@@ -155,7 +157,7 @@ export const getStaircaseDetectionTimeline = (
       );
       // Add a test_part label to the data object to be able to identify trials
       // later on.
-      data.test_part = 'staircase';
+      data.test_part = 'staircase_test';
     },
   };
 
@@ -186,9 +188,28 @@ export const getStaircaseDetectionTimeline = (
     },
   };
 
-  // TODO: loop the cycle and adjust difficulty after each iteration
+  const logCycleData = {
+    type: CallFunctionPlugin,
+    func: () => {
+      // Do nothing.
+    },
+    data: () => {
+      const { newGratingVisibility, accuracy } = calculateStaircaseStats(
+        jsPsychInstance.data.get(),
+        gratingVisibility
+      );
+      return {
+        test_part: 'staircase_cycle_data_log',
+        accuracy,
+        newGratingVisibility,
+      };
+    },
+  };
+
+  // Loop the staircaseCycle as many times as defined in './constants.js'. If
+  // the desired numbers of runs is reached, store the final data.
   const staircaseCycleLoop = {
-    timeline: [staircaseCycle],
+    timeline: [staircaseCycle, logCycleData],
     loop_function: (data) => {
       // Increase cycle count
       cyclesCarriedOut++;
@@ -203,7 +224,7 @@ export const getStaircaseDetectionTimeline = (
           jsPsychInstance.data.addProperties({
             participantGratingVisibilityLevelLeft: gratingVisibility,
           });
-          // Also store it in the participantGratingVisibility object
+          // Also store it in the RAM (participantGratingVisibility object)
           participantGratingVisibility.setLeft(gratingVisibility);
         } else {
           // If, however, right tilted gratings were presented, also store, but
@@ -211,7 +232,7 @@ export const getStaircaseDetectionTimeline = (
           jsPsychInstance.data.addProperties({
             participantGratingVisibilityLevelRight: gratingVisibility,
           });
-          // Also store it in the participantGratingVisibility object
+          // Also store it in the RAM (participantGratingVisibility object)
           participantGratingVisibility.setRight(gratingVisibility);
         }
         // Reset gratingVisibility and the cycles count and stop this block
@@ -220,39 +241,16 @@ export const getStaircaseDetectionTimeline = (
         return false;
       }
 
-      // Make a copy of gratingVisibility
-      let previousGratingVisibility = gratingVisibility;
-
-      // Get all trials of the previous cycle which contain relevant data
-      const relevantTrials = data
-        // Multiplied by 3 since for each response trial, there is also an
-        // animation and a fixation cross trial
-        .last(STAIRCASE_TRIALS_PER_CYCLE * 3)
-        .filter({ test_part: 'staircase' });
-      // Based on that data, calcualte the number of correct responses and the
-      // accuracy.
-      const correctResponses = relevantTrials.filter({ correct: true }).count();
-      const accuracy = Math.round(
-        (correctResponses / relevantTrials.count()) * 100
+      // Calculate accuracy and adjusted grating visibility level
+      const { newGratingVisibility } = calculateStaircaseStats(
+        data,
+        gratingVisibility
       );
+      // And set it accordingly
+      console.log(`New: ${newGratingVisibility}, old: ${gratingVisibility}`);
+      gratingVisibility = newGratingVisibility;
 
-      // If the measured accuracy differs to strongly from the target accuracy,
-      // adjust the difficulty.
-      if (accuracy > STAIRCASE_ACCURACY_UPPER_BOUND) {
-        // Make it harder (less visible)
-        gratingVisibility =
-          previousGratingVisibility -
-          Math.round((accuracy - STAIRCASE_ACCURACY_TARGET) / 10);
-      } else if (accuracy < STAIRCASE_ACCURACY_LOWER_BOUND) {
-        // Make it easier (more visible)
-        gratingVisibility =
-          previousGratingVisibility +
-          Math.round((STAIRCASE_ACCURACY_TARGET - accuracy) / 10);
-      }
-      // Make sure we are not getting out of bounds
-      if (gratingVisibility > 50) {
-        gratingVisibility = 50;
-      }
+      // Then continue the loop
       return true;
     },
   };
