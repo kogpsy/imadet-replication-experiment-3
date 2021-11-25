@@ -1,6 +1,6 @@
 /**
- * @title Gratings Replication Experiment 1
- * @description In diesem Experiment geht es um ... (anpassen in experiment.js).
+ * @title IMADET Experiment 3 Replication
+ * @description Replication of the third experiment of the IMADET stude (see README).
  * @version 0.1.0
  *
  * The following lines specify which media directories will be packaged and preloaded by jsPsych.
@@ -9,7 +9,39 @@
  * @imageDir images
  */
 
-// You can import stylesheets (.scss or .css).
+// Terser requires license comments not to be in the toplevel scope, which is
+// why we need to create a function to make terser extract to comment.
+export function licenseComment() {
+  /*! **************************************************************************
+  Copyright © Robin Bürkli and the University of Bern
+
+  This software is released under the MIT license:
+
+  ---
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the “Software”), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+  ---
+
+  License notices from modules used in this project are listed below.
+  *************************************************************************** */
+}
+
+// Import stylesheet
 import '../styles/main.scss';
 
 import { initJsPsych } from 'jspsych';
