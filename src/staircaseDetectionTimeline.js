@@ -247,7 +247,6 @@ export const getStaircaseDetectionTimeline = (
         gratingVisibility
       );
       // And set it accordingly
-      console.log(`New: ${newGratingVisibility}, old: ${gratingVisibility}`);
       gratingVisibility = newGratingVisibility;
 
       // Then continue the loop
