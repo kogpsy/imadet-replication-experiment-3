@@ -239,5 +239,6 @@ export async function run({ assetPaths, input = {}, environment }) {
   else {
     console.log('End of experiment. Results:');
     console.log(resultData);
+    resultData.localSave();
   }
 }
