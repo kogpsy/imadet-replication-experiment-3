@@ -103,7 +103,7 @@ export const getPracticeImaginationTimeline = (
       ANIMATION_FRAMES,
       ImageSequenceType.Noise
     ),
-    choices: jsPsychInstance.NO_KEYS,
+    choices: 'NO_KEYS',
     frame_time: Math.round(ANIMATION_DURATION / ANIMATION_FRAMES),
   };
 

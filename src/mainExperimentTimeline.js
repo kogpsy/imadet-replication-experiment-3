@@ -154,7 +154,7 @@ export const getMainExperimentTimeline = (
         imageSequenceType
       );
     },
-    choices: jsPsychInstance.NO_KEYS,
+    choices: 'NO_KEYS',
     frame_time: Math.round(ANIMATION_DURATION / ANIMATION_FRAMES),
   };
   // Define the response screen shown after each animation

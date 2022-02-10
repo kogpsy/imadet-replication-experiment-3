@@ -57,7 +57,7 @@ export const getFixationCross = (jsPsychInstance) => {
   return {
     type: HtmlKeyboardResponsePlugin,
     stimulus: '<div class="fixation_cross">+</div>',
-    choices: jsPsychInstance.NO_KEYS,
+    choices: 'NO_KEYS',
     trial_duration: FIXATION_CROSS_DURATION,
     data: { test_part: 'fixation_cross' },
   };
