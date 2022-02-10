@@ -105,7 +105,7 @@ export const getMainExperimentTimeline = (
         <div class="vertical_spacer"></div>
         <img src="${instructionImage}" />
         <div class="vertical_spacer"></div>
-        <p> Drücken Sie die [ Leertatse ] um fortzufahren. </p>
+        <p> Drücken Sie die [ Leertaste ] um fortzufahren. </p>
       `;
     },
     choices: [' '],
