@@ -170,7 +170,8 @@ export const curateData = (data) => {
       return (
         data.test_part !== undefined &&
         data.test_part !== null &&
-        data.test_part !== 'fixation_cross'
+        data.test_part !== 'fixation_cross' &&
+        data.test_part !== 'staircase_cycle_data_log'
       );
     });
   return curated;

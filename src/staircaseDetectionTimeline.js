@@ -224,7 +224,7 @@ export const getStaircaseDetectionTimeline = (
         ) {
           // Store the according visibility level in a data property
           jsPsychInstance.data.addProperties({
-            participantGratingVisibilityLevelLeft: gratingVisibility,
+            detection_threshold_left_tilt: gratingVisibility,
           });
           // Also store it in the RAM (participantGratingVisibility object)
           participantGratingVisibility.setLeft(gratingVisibility);
@@ -232,7 +232,7 @@ export const getStaircaseDetectionTimeline = (
           // If, however, right tilted gratings were presented, also store, but
           // in different property, of course.
           jsPsychInstance.data.addProperties({
-            participantGratingVisibilityLevelRight: gratingVisibility,
+            detection_threshold_right_tilt: gratingVisibility,
           });
           // Also store it in the RAM (participantGratingVisibility object)
           participantGratingVisibility.setRight(gratingVisibility);
