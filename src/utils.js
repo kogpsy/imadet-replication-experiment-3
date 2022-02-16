@@ -149,3 +149,29 @@ export const calculateStaircaseStats = (data, previousGratingVisibility) => {
     accuracy,
   };
 };
+
+export const curateData = (data) => {
+  const curated = data
+    .ignore('internal_node_id')
+    .ignore('timeout')
+    .ignore('success')
+    .ignore('failed_images')
+    .ignore('failed_audio')
+    .ignore('failed_video')
+    .ignore('trial_type')
+    .ignore('trial_index')
+    .ignore('time_elapsed')
+    .ignore('stimulus')
+    .ignore('animation_sequence')
+    .ignore('value')
+    .ignore('accuracy')
+    .ignore('newGratingVisibility')
+    .filterCustom((data) => {
+      return (
+        data.test_part !== undefined &&
+        data.test_part !== null &&
+        data.test_part !== 'fixation_cross'
+      );
+    });
+  return curated;
+};

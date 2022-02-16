@@ -53,7 +53,11 @@ import PreloadPlugin from '@jspsych/plugin-preload';
 import { GRATING_VISIBILITY_LEVEL_INIT } from './constants';
 
 // Import utils
-import { getFixationCross, getRandomResponseMapping } from './utils';
+import {
+  getFixationCross,
+  getRandomResponseMapping,
+  curateData,
+} from './utils';
 
 // Import trials
 import { getPraciceDetectionTimeline } from './practiceDetectionTimeline';
@@ -227,7 +231,7 @@ export async function run({ assetPaths, input = {}, environment }) {
   await jsPsych.run(timeline);
 
   // Get the resulting data
-  const resultData = jsPsych.data.get();
+  const resultData = curateData(jsPsych.data.get());
   // If the experiment is run by JATOS, pass the resulting data to the server
   // in CSV form.
   if (environment === 'jatos') {
