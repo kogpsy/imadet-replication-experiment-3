@@ -174,6 +174,8 @@ export const getMainExperimentTimeline = (
         data.response,
         correctResponse
       );
+      // Also add the correct response
+      data.correct_response = correctResponse;
       // Add a test_part label to the data object to be able to identify trials
       // later on.
       data.test_part = 'main_test';
@@ -229,6 +231,8 @@ export const getMainExperimentTimeline = (
         data.response,
         correctResponse
       );
+      // Also add correct response
+      data.correct_response = correctResponse;
       // Add label about which test part to the data object
       data.test_part = 'main_imagination_check';
     },

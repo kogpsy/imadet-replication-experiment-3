@@ -155,6 +155,8 @@ export const getStaircaseDetectionTimeline = (
         data.response,
         correctResponse
       );
+      // Also add correct response
+      data.correct_response = correctResponse;
       // Add a test_part label to the data object to be able to identify trials
       // later on.
       data.test_part = 'staircase_test';
