@@ -191,6 +191,9 @@ export async function run({ assetPaths, input = {}, environment }) {
   // Add some debrief questions to the timeline
   timeline.push({
     type: SurveyTextPlugin,
+    data: {
+      test_part: 'post_experiment_survey',
+    },
     questions: [
       { prompt: 'Was ist Ihr Geschlecht?', rows: 2, columns: 40 },
       { prompt: 'Wie alt sind Sie?', rows: 2, columns: 40 },
@@ -217,17 +220,6 @@ export async function run({ assetPaths, input = {}, environment }) {
     button_label: 'Weiter',
   });
 
-  // Add the "experiment finished" message to the timeline.
-  timeline.push({
-    type: HtmlKeyboardResponsePlugin,
-    stimulus: `
-      <p>
-        Drücken Sie eine beliebige Taste, um das Experiment zu beenden. Vielen
-        Dank für Ihre Teilnahme!
-      </p> 
-    `,
-  });
-
   await jsPsych.run(timeline);
 
   // Get the resulting data
@@ -235,7 +227,7 @@ export async function run({ assetPaths, input = {}, environment }) {
   // If the experiment is run by JATOS, pass the resulting data to the server
   // in CSV form.
   if (environment === 'jatos') {
-    jatos.submitResultData(resultData.csv(), jatos.startNextComponent);
+    jatos.submitResultData(resultData.json(), jatos.startNextComponent);
   }
   // In every other environment, print the data to the browser console in JSON
   // form. Here you can adjust what should happen to the data if the experiment
@@ -243,6 +235,6 @@ export async function run({ assetPaths, input = {}, environment }) {
   else {
     console.log('End of experiment. Results:');
     console.log(resultData);
-    resultData.localSave('csv', 'data.csv');
+    resultData.localSave('json', 'data.json');
   }
 }
